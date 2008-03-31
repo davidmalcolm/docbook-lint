@@ -296,7 +296,7 @@ class DocBookSpellChecker(DocBookTest):
             # print 'word: "%s"'%word
             
             # Don't spellcheck numbers:
-            if re.match(r"^[\d]*$", word):
+            if re.match(r"^[\d.]*$", word):
                 return
             
             # Check the word:
@@ -528,6 +528,14 @@ MIS:          0
 </article>
 """
 
+numericSpellingExample="""<?xml version="1.0"?>
+<article>
+<para>
+The quick brown fox jumps over 3.2 lazy dogs
+</para>
+</article>
+"""
+
 class TestSpellcheck(SelfTest):
     def test_spelling_mistake(self):
         "Ensure that spelling mistakes are flagged"
@@ -536,6 +544,10 @@ class TestSpellcheck(SelfTest):
     def test_dont_spellcheck_computeroutput(self):
         "Ensure that <computeroutput> doesn't get spellchecked"
         self.lint_string(dontSpellcheckExample)
+
+    def test_dont_spellcheck_numbers(self):
+        "Ensure that numbers don't get spellchecked"
+        self.lint_string(numericSpellingExample)
 
 badWordsExample="""<?xml version="1.0"?>
 <article>
