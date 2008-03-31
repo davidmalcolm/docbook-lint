@@ -1,0 +1,14 @@
+docbook-lint is a tool to check DocBook XML files for various problems.
+
+So far it checks for the following:
+- overly long lines within <screen> elements
+- overly long content within <computeroutput> elements
+- spelling mistakes
+- presence of "forbidden" words (e.g. for swearwords or trademarks); this needs
+to be configured
+
+See TODO for ideas for other features, and HACKING for development info.
+
+It doesn't implement DTD validation at the moment; there are plenty of other
+tools for doing that (although a patch would be welcome)
+

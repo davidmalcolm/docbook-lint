@@ -1,0 +1,18 @@
+Patches welcome:  please send to the mailing list.
+
+See TODO for some ideas on what needs doing
+
+Contact
+=======
+The mailing list for the project is:
+  dev@testing.108.redhat.com
+
+See https://testing.108.redhat.com/servlets/ProjectMailingListList for
+archives and subscription info
+
+Layout
+======
+Try to stick to PEP8 ( http://www.python.org/dev/peps/pep-0008/ ).  In
+particular, please use 4-space indentation; no tabs.
+
+Try to target Python 2.3 and later.

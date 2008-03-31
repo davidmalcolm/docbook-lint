@@ -1,0 +1,51 @@
+- Sort things out so that it will install to site-packages and to /usr/bin sanely
+
+- Check xref internal links
+
+- Check external links for <ulink> URLs? see also:
+    http://fedora.redhat.com/docs/documentation-guide/s1-xml-tag-sulink.html
+
+- Get it packaged up and into Fedora and other distributions
+
+- Grammar checking:
+  see http://lingucomponent.openoffice.org/grammar.html for a list of free grammar checkers
+
+- Enforce naming rules of IDs for elements:
+  e.g. require chapters to have an id of the form "ch-", sections as "sn-" etc
+  see http://fedora.redhat.com/docs/documentation-guide/ch-rh-guidelines.html#s1-xml-guidelines-naming
+
+- Check for certain things mandated by the Fedora Project Documentation Guide,
+see: http://fedora.redhat.com/docs/documentation-guide/ch-xml-tags.html for a
+long list of things that look amenable to automatic checking, including:
+  - Do Not Use Trademark Entities
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-trademark.html
+  - Content inside para tags
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-para.html
+  - Content inside para tags within listitem tags
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-para.html
+  - Content inside screen tags
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-screen.html
+  - EPS before other formats in <figure>:
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-figure.html
+  - Don't add brackets to <keycap> text:
+      http://fedora.redhat.com/docs/documentation-guide/s1-xml-tags-keycap.html
+
+- License checking?  see e.g.:
+    http://fedora.redhat.com/docs/documentation-guide/s1-tutorial-license.html
+
+- Overlong admonitions?  see e.g.:
+    http://fedora.redhat.com/docs/documentation-guide/sn-composition-tips.html
+
+- Optionally: warn about entities that contain elements, since apparently this
+can sometimes confuse validators
+
+- Optionally: warn about use of entities for including documents (so that you can
+mandate the use of xi:include) - or vice versa
+
+- Warn about documents not specifying a DTD, or using the wrong one
+
+- Warn about image formats that aren't in a list (known to work with your toolchain)
+
+- etc
+
+Patches welcome:  please send to the mailing list (see HACKING)
