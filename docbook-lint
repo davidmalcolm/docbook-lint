@@ -13,7 +13,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # Author: David Malcolm
-import docbooklint.docbooklint
+import docbooklint.linter
 import sys
 
 def usage():
@@ -25,8 +25,8 @@ def main():
         sys.exit(1)
 
     filename = sys.argv[1]
-    config=docbooklint.docbooklint.Configuration()
-    numWarnings = docbooklint.docbooklint.test_file(filename, config=config)
+    config=docbooklint.linter.Configuration()
+    numWarnings = docbooklint.linter.check_file(filename, config=config)
     sys.exit(numWarnings)
 
 if __name__=='__main__':

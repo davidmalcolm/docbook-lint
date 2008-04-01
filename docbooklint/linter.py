@@ -17,6 +17,7 @@
 import unittest
 import xml.dom.minidom
 import xml.dom.ext
+import sys
 
 #
 # Base class for tests
