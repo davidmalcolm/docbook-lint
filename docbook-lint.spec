@@ -1,11 +1,11 @@
 Summary: Tool for testing DocBook XML sources
-Name: docbooklint
-Version: 0.0.1
-Release: 2%{?dist}
+Name: docbook-lint
+Version: 0.0.2
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
-#URL: 
-Source0: docbooklint-%{version}.tar.gz
+URL: https://fedorahosted.org/docbook-lint
+Source0: docbook-lint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 BuildRequires: python
@@ -38,6 +38,9 @@ rm -rf $RPM_BUILD_ROOT
 # TODO HACKING
 
 %changelog
+* Tue Apr  1 2008 David Malcolm <dmalcolm@redhat.com> - 0.0.2-1
+- rename specfile; bump to 0.0.2
+
 * Tue Dec  5 2006 David Malcolm <dmalcolm@redhat.com> - 0.0.1-2
 - added requirement on python-enchant
 
