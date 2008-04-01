@@ -26,11 +26,11 @@ def is_textual(node):
 def is_element(node):
     return node.nodeType == xml.dom.minidom.Node.ELEMENT_NODE
 
-def is_named_element(node, elementName):
+def is_named_element(node, elementName, nsURI=None):
     if is_element(node):
-        if node.nodeName==elementName:
-            # Doesn't support namespaces; not needed for DocBook
-            return True
+        if node.localName == elementName:
+            if node.namespaceURI == nsURI:
+                return True
     return False
 
 class XmlVisitor:
