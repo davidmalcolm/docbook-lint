@@ -1,14 +1,13 @@
-Patches welcome:  please send to the mailing list.
+Upstream is a Trac instance: https://fedorahosted.org/docbook-lint/
 
-See TODO for some ideas on what needs doing
+Patches welcome:  please attach to the Trac instance
+
+See TODO and Trac for some ideas on what needs doing
 
 Contact
 =======
-The mailing list for the project is:
-  dev@testing.108.redhat.com
-
-See https://testing.108.redhat.com/servlets/ProjectMailingListList for
-archives and subscription info
+The project does not yet have a mailing list, contact dmalcolm@redhat.com
+for anything not covered by the Trac instance
 
 Layout
 ======
