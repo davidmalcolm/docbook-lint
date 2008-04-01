@@ -28,12 +28,14 @@ local-rpm: $(NAME)-$(VERSION)-$(RELEASE).noarch.rpm
 
 local-srpm: $(NAME)-$(VERSION)-$(RELEASE).src.rpm
 
-tarball:
+tarball: $(SOURCEDIR)/$(NAME)-$(VERSION).tar.gz
+
+$(SOURCEDIR)/$(NAME)-$(VERSION).tar.gz:
 	python setup.py sdist
 
-$(NAME)-$(VERSION)-$(RELEASE).noarch.rpm: $(SPECFILE)
+$(NAME)-$(VERSION)-$(RELEASE).noarch.rpm: tarball $(SPECFILE)
 	rpmbuild -ba $(RPM_DEFINES) $(SPECFILE)
 
-$(NAME)-$(VERSION)-$(RELEASE).src.rpm: $(SPECFILE)
+$(NAME)-$(VERSION)-$(RELEASE).src.rpm: tarball $(SPECFILE)
 	rpmbuild -bs $(RPM_DEFINES) $(SPECFILE)
 
