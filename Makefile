@@ -39,3 +39,5 @@ $(NAME)-$(VERSION)-$(RELEASE).noarch.rpm: tarball $(SPECFILE)
 $(NAME)-$(VERSION)-$(RELEASE).src.rpm: tarball $(SPECFILE)
 	rpmbuild -bs $(RPM_DEFINES) $(SPECFILE)
 
+test:
+	nosetests docbooklint
