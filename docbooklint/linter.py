@@ -15,7 +15,8 @@
 
 import unittest
 import sys
-from xmlutils import XmlFile
+from xmlutils import XmlFile, XmlDoc
+
 #
 # Base class for tests
 #
