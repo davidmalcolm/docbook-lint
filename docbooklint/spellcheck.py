@@ -26,15 +26,15 @@ class SpellcheckerError(DocBookError):
         self.word = word
 
     def __str__(self):
-        return 'Possibly mispelled word for "%s": "%s" %s'%(self.langCode, self.word, self.get_context_str())
+        return u'Possibly mispelled word for "%s": "%s" %s'%(self.langCode, self.word, self.get_context_str())
 
 class DocBookSpellChecker(DocBookTest):
     def __init__(self, defaultLangCode):
         self.defaultLangCode = defaultLangCode
 
-    def perform_test(self, reporter, dom):
+    def perform_test(self, reporter, doc):
         visitor = DocBookSpellChecker.Visitor(self.defaultLangCode)
-        visitor.visit_dom(dom)        
+        visitor.visit_doc(doc)
 
         for lang in visitor.languages.itervalues():
                 for misspelling in lang.misspellings:

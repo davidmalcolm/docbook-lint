@@ -14,10 +14,8 @@
 # Author: David Malcolm
 
 import unittest
-import xml.dom.minidom
-import xml.dom.ext
 import sys
-
+from xmlutils import XmlFile
 #
 # Base class for tests
 #
@@ -75,7 +73,7 @@ class PrintingReporter(Reporter):
         self.numWarnings = 0
 
     def handle_warning(self, warning):
-        print >> self.outputFileObj, "%s"%(str(warning))
+        print >> self.outputFileObj, u'%s' % warning
         self.numWarnings += 1
 
 class StdoutReporter(PrintingReporter):
@@ -117,19 +115,16 @@ class DocBookLinter:
 
         self.tests.append(DocBookFedoraIdNamingConvention())
 
-    def test_file(self, filename):
-        xmlDoc = xml.dom.minidom.parse(filename)
-        self.test_dom(xmlDoc)
-
-    def test_dom(self, dom):
+    def test_doc(self, xmlDoc):
         for test in self.tests:
-            test.perform_test(self.reporter, dom)
+            test.perform_test(self.reporter, xmlDoc)
 
 def check_file(filename, config):
     "Check the file, outputting to stderr.  Return the number of warnings"
     reporter=StderrReporter(filename)
+    xmlDoc = XmlFile(filename)
     linter = DocBookLinter(reporter, config=config)
-    linter.test_file(filename)
+    linter.test_doc(xmlDoc)
     return reporter.numWarnings
 
 #
@@ -139,12 +134,9 @@ def check_file(filename, config):
 class SelfTest(unittest.TestCase):
     """Utility class for creating unit tests for the linter"""
     
-    def make_xml(self, sourceStr):
-        return xml.dom.minidom.parseString(sourceStr)
-
     def lint_string(self, sourceStr, config=None):
         if not config:
             config = Configuration()
-        xmlDoc = self.make_xml(sourceStr)
+        xmlDoc = XmlDoc.from_source(sourceStr)
         linter = DocBookLinter(reporter=ExceptionReporter(), config=config)
-        linter.test_dom(xmlDoc)
+        linter.test_doc(xmlDoc)

@@ -25,9 +25,9 @@ class IdDoesNotStartWithPrefix(DocBookError):
         return 'Node <%s>\'s id ("%s") does not start with prefix "%s"'%(self.node.nodeName, self.id, self.expectedPrefix)
 
 class DocBookFedoraIdNamingConvention(DocBookTest):
-    def perform_test(self, reporter, dom):
+    def perform_test(self, reporter, doc):
         visitor = DocBookFedoraIdNamingConvention.Visitor(reporter)
-        visitor.visit_dom(dom)
+        visitor.visit_doc(doc)
 
     class Visitor(XmlVisitor):
         def __init__(self, reporter):

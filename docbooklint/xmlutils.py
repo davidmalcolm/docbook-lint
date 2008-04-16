@@ -15,6 +15,7 @@
 
 import xml.dom.minidom
 import xml.dom.ext
+import os.path
 
 #
 # XML utilities:
@@ -33,25 +34,51 @@ def is_named_element(node, elementName, nsURI=None):
                 return True
     return False
 
+
+class XmlDoc:
+    # Wrapper for a DOM
+    def __init__(self, dom):
+        self.dom = dom
+
+    @classmethod
+    def from_source(cls, sourceStr):
+        return XmlDoc(xml.dom.minidom.parseString(sourceStr))
+
+class XmlFile(XmlDoc):
+    # Wrapper for a DOM loaded from a file
+    def __init__(self, filename):
+        self.filename = filename
+        self.basePath = os.path.dirname(filename)
+        self.dom = xml.dom.minidom.parse(filename)
+
+        
 class XmlVisitor:
     """
     Base class for a visiting nodes of an XML DOM tree
     """
     def visit_file(self, filename):
-        xmlDoc = xml.dom.minidom.parse(filename)
-        self.recurse_nodes(xmlDoc)
+        xmlDoc = XmlFile(filename)
+        self.recurse_nodes(xml.dom, xmlDoc)
 
-    def visit_dom(self, dom):
-        self.recurse_nodes(dom)
+    def visit_doc(self, xmlDoc):
+        self.recurse_nodes(xmlDoc.dom, xmlDoc)
 
-    def recurse_nodes(self, node):
+    def recurse_nodes(self, node, xmlDoc):
         "Depth-first traversal of tree"
         self.visit(node)
 
         child = node.firstChild
         while child:
-            self.recurse_nodes(child)
+            self.recurse_nodes(child, xmlDoc)
             child = child.nextSibling
+
+        # recurse into other files via XInclude:
+        if is_named_element(node, 'include', 'http://www.w3.org/2001/XInclude'):
+            filename = node.getAttribute('href')
+            if not os.path.isabs(filename):
+                filename = os.path.join(xmlDoc.basePath, filename)
+            includedXmlDoc = XmlFile(filename)
+            self.recurse_nodes(includedXmlDoc.dom, includedXmlDoc)
 
     def visit(self, node):
         #print node

@@ -35,9 +35,9 @@ class DocBookLineLengths(DocBookTest):
     def __init__(self, maxLineLength):
         self.maxLineLength = maxLineLength
         
-    def perform_test(self, reporter, dom):
+    def perform_test(self, reporter, doc):
         visitor = DocBookLineLengths.Visitor(reporter, self.maxLineLength)
-        visitor.visit_dom(dom)
+        visitor.visit_doc(doc)
 
     class Visitor(XmlVisitor):
         def __init__(self, reporter, maxLineLength):

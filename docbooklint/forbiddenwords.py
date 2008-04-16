@@ -27,9 +27,9 @@ class DocBookForbiddenWords(DocBookTest):
     def __init__(self, forbiddenWords):
         self.forbiddenWords = forbiddenWords
         
-    def perform_test(self, reporter, dom):
+    def perform_test(self, reporter, doc):
         visitor = DocBookForbiddenWords.Visitor(self.forbiddenWords, reporter)
-        visitor.visit_dom(dom)
+        visitor.visit_doc(doc)
 
     class Visitor(XmlVisitor):
         def __init__(self, forbiddenWords, reporter):
