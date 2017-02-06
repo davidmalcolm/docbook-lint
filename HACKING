@@ -1,14 +1,3 @@
-Upstream is a Trac instance: https://fedorahosted.org/docbook-lint/
-
-Patches welcome:  please attach to the Trac instance
-
-See TODO and Trac for some ideas on what needs doing
-
-Contact
-=======
-The project does not yet have a mailing list, contact dmalcolm@redhat.com
-for anything not covered by the Trac instance
-
 Layout
 ======
 Try to stick to PEP8 ( http://www.python.org/dev/peps/pep-0008/ ).  In
